@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <title>Expense Tracker</title>
+        <link rel="stylesheet" href="CSS/stylesheet.css">
+        <link href="addExpense.html">
+    </head>
+    <body>
+        <div id="header" class="headerClass">
+            <header>
+                <h1>Welcome to Expense Tracker</h1>
+                <p>Track your expenses efficiently!😊</p>
+                <marquee>Stay on top of your finances!</marquee>
+            </header>
+        </div>
+       
+         <div id="salary" class="salaryClass">
+            <label for="salaryInput">Enter your Savings: </label>
+            <input type="text" id="salaryInput" placeholder="💲">
+            <button type="button" id="saveSalaryBtn">Save</button>
+        </div>
+
+        <div id="content" class="contentClass">
+            <p><b><i>Here you can add, view, and manage your expenses.</i></b></p>
+            <nav id="navID">
+                <a href="#" id="addPage">Add Expense</a>|
+                <a href="#" id="viewPage">View Expenses</a>|
+                <a href="#" id="managePage">Manage Expenses</a>|
+                <a href="#" id="viewSalary">View Amount</a>
+            </nav>
+        </div>
+
+          <div id="expensesID"></div>
+       
+    </body>
+    <script src="jquery-3.7.1.js"></script>
+    <script>
+    $(document).ready(function() {
+
+    
+        $("#addPage").click(function() {
+            $("#expensesID").load("addExpense.html");
+        });
+
+        $("#viewPage").click(function() {
+            $("#expensesID").load("viewExpenses.html");
+        });
+
+        $("#managePage").click(function() {
+            $("#expensesID").load("manageExpenses.html");
+        });
+        $("#viewSalary").click(function() {
+            $("#expensesID").load("viewSalary.html");
+        });
+
+        $("#saveSalaryBtn").click(function(){
+            let salary=document.getElementById("salaryInput").value;
+            if(salary===""){
+                alert("Please enter your salary");
+                return;
+            }
+            localStorage.setItem("salary", salary);
+            alert("Salary saved successfully!");
+        })
+        
+
+    });
+
+   
+    </script>
+
+</html>
