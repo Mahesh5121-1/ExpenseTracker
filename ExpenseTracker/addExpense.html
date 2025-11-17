@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title>AddExpenses</title>
+        <link rel="stylesheet" href="CSS/stylesheet.css">
+    </head>
+    <body>
+        
+
+         <div>
+            <p><i>Add your Expenses here.</i></p>
+            <input type="text" placeholder="Expenses" id="expenseInput1">
+            <input type="text" placeholder="💲" id="expenseInput2">|
+            <button type="button" id="addBtn">➕</button>
+           
+        </div>
+       
+
+         
+    </body>
+    <script src="../JS/jquery-3.7.1.js"></script>
+    <script>
+    $(document).ready(function(){
+
+        // $("#addBtn").click(function(){
+        //     let name = $("#expenseInput1").val();
+        //     let amount = $("#expenseInput2").val();
+        //     if(name === "" || amount === ""){
+        //         alert("Please enter both name and amount");
+        //         return;
+        //     }
+        //     let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+        //     expenses.push({
+        //         name: name,
+        //         amount: amount
+        //     });
+        //     localStorage.setItem("expenses", JSON.stringify(expenses));
+        //     alert("Expense Added!");
+        //     $("#expenseInput1").val("");
+        //     $("#expenseInput2").val("");
+        // });
+
+        $("#addBtn").click(function(){
+            let name=$("#expenseInput1").val().trim();
+            let amount=$("#expenseInput2").val().trim();
+            if(name===""|| amount===""){
+                alert("please enter valid expense name and amount");
+                return;
+            }
+            if(amount<0){
+                alert("Please enter a valid amount");
+                return;
+            }
+            let expenses=JSON.parse(localStorage.getItem("expenses")) || [];
+            expenses.push({
+                name:name,amount:amount});
+            localStorage.setItem("expenses",JSON.stringify(expenses));
+            $("#expenseInput1").val("");
+            $("#expenseInput2").val("");
+            })
+        });
+</script>
+
+</html>
