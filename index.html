@@ -1,71 +1,90 @@
 <html>
-    <head>
-        <title>Expense Tracker</title>
-        <link rel="stylesheet" href="CSS/stylesheet.css">
-        <link href="addExpense.html">
-    </head>
-    <body>
-        <div id="header" class="headerClass">
-            <header>
-                <h1>Welcome to Expense Tracker</h1>
-                <p>Track your expenses efficiently!😊</p>
-                <marquee>Stay on top of your finances!</marquee>
-            </header>
-        </div>
-       
-         <div id="salary" class="salaryClass">
-            <label for="salaryInput">Enter your Savings: </label>
-            <input type="text" id="salaryInput" placeholder="💲">
-            <button type="button" id="saveSalaryBtn">Save</button>
-        </div>
+<head>
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+    <div class="headerClass">
+        <header>
+            <h1>Welcome to Expense Tracker</h1>
+            <p>Track your expenses efficiently! 😊</p>
+            <marquee>Stay on top of your finances!</marquee>
+            <button id="darkModeToggle" style="margin-top:10px; padding:6px 12px; border:none; border-radius:5px; background:#ffcc00; color:#121212; cursor:pointer;">
+    🌙 Dark Mode
+</button>
 
-        <div id="content" class="contentClass">
-            <p><b><i>Here you can add, view, and manage your expenses.</i></b></p>
-            <nav id="navID">
-                <a href="#" id="addPage">Add Expense</a>|
-                <a href="#" id="viewPage">View Expenses</a>|
-                <a href="#" id="managePage">Manage Expenses</a>|
-                <a href="#" id="viewSalary">View Amount</a>
-            </nav>
-        </div>
+        </header>
+    </div>
 
-          <div id="expensesID"></div>
-       
-    </body>
+    <div class="salaryClass">
+        <label for="salaryInput">Enter your Savings: </label>
+        <input type="text" id="salaryInput" placeholder="💲">
+        <button type="button" id="saveSalaryBtn">Save</button>
+    </div>
+
+    <div class="contentClass">
+        <p><b><i>Here you can add, view, and manage your expenses.</i></b></p>
+        <nav>
+            <a href="#" id="addPage">Add Expense</a>|
+            <a href="#" id="viewPage">View Expenses</a>|
+            <a href="#" id="managePage">Manage Expenses</a>|
+            <a href="#" id="viewSalary">View Savings</a>
+        </nav>
+    </div>
+
+    <div id="expensesID"></div>
+
     <script src="jquery-3.7.1.js"></script>
     <script>
-    $(document).ready(function() {
-
-    
-        $("#addPage").click(function() {
-            $("#expensesID").load("addExpense.html");
-        });
-
-        $("#viewPage").click(function() {
-            $("#expensesID").load("viewExpenses.html");
-        });
-
-        $("#managePage").click(function() {
-            $("#expensesID").load("manageExpenses.html");
-        });
-        $("#viewSalary").click(function() {
-            $("#expensesID").load("viewSalary.html");
-        });
+    $(document).ready(function(){
+        $("#addPage").click(function() { $("#expensesID").load("addExpense.html"); });
+        $("#viewPage").click(function() { $("#expensesID").load("viewExpenses.html"); });
+        $("#managePage").click(function() { $("#expensesID").load("manageExpenses.html"); });
+        $("#viewSalary").click(function() { $("#expensesID").load("viewSalary.html"); });
 
         $("#saveSalaryBtn").click(function(){
-            let salary=document.getElementById("salaryInput").value;
-            if(salary===""){
-                alert("Please enter your salary");
+            let salary = $("#salaryInput").val().trim();
+            if(salary === "" || isNaN(salary) || salary < 0){
+                alert("Please enter valid savings amount");
                 return;
             }
             localStorage.setItem("salary", salary);
-            alert("Salary saved successfully!");
-        })
-        
+            alert("Savings saved successfully!");
+            $("#salaryInput").val("");
+        });
 
-    });
+        if(localStorage.getItem("darkMode") === "enabled") {
+        $("body").addClass("dark-mode");
+        $("#darkModeToggle").text("☀️ Light Mode");
+    }
 
    
-    </script>
 
+
+    });
+    </script>
+    <script>
+        
+        $(document).ready(function() {
+        if(localStorage.getItem("darkMode") === "enabled") {
+            $("body").addClass("dark-mode");
+            $("#darkModeToggle").text("☀️ Light Mode");
+        }
+
+        $("#darkModeToggle").click(function(){
+            $("body").toggleClass("dark-mode");
+            if($("body").hasClass("dark-mode")) {
+                localStorage.setItem("darkMode", "enabled");
+                $(this).text("☀️ Light Mode");
+            } else {
+                localStorage.setItem("darkMode", "disabled");
+                $(this).text("🌙 Dark Mode");
+            }
+        });
+
+});
+</script>
+
+    </script>
+</body>
 </html>
