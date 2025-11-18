@@ -1,0 +1,43 @@
+<div class="dashboard">
+    <h2>Dashboard</h2>
+    <div class="cards">
+        <div class="card" id="totalSalary">Total Salary: ₹0</div>
+        <div class="card" id="totalExpenses">Total Expenses: ₹0</div>
+        <div class="card" id="balanceAmount">Balance: ₹0</div>
+    </div>
+
+    <div class="cards" id="categorySummary">
+        <div class="card">Food: ₹0</div>
+        <div class="card">Travel: ₹0</div>
+        <div class="card">Shopping: ₹0</div>
+        <div class="card">Bills: ₹0</div>
+        <div class="card">Other: ₹0</div>
+    </div>
+</div>
+
+<script src="jquery-3.7.1.js"></script>
+<script>
+$(document).ready(function() {
+    let salary = Number(localStorage.getItem("salary")) || 0;
+    let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+    
+    let totalExp = 0;
+    let categories = {food:0, travel:0, shopping:0, bills:0, other:0};
+
+    expenses.forEach(e => {
+        totalExp += Number(e.amount);
+        let cat = e.category || "other";
+        categories[cat] += Number(e.amount);
+    });
+
+    $("#totalSalary").text("Total Salary: ₹" + salary);
+    $("#totalExpenses").text("Total Expenses: ₹" + totalExp);
+    $("#balanceAmount").text("Balance: ₹" + (salary - totalExp));
+
+    let cats = $("#categorySummary .card");
+    cats.each(function() {
+        let text = $(this).text().split(":")[0].toLowerCase();
+        $(this).text(text.charAt(0).toUpperCase() + text.slice(1) + ": ₹" + (categories[text] || 0));
+    });
+});
+</script>
