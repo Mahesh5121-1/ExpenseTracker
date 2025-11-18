@@ -1,5 +1,445 @@
-.headerClass{
-    text-align:center;
-    color:cornflowerblue;
+/* ===============================
+   General Reset & Body Styling
+=============================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+    padding: 0 20px;
+}
+
+/* ===============================
+   Header Styling
+=============================== */
+.headerClass header {
+    background: linear-gradient(90deg, #4b6cb7, #182848);
+    color: #fff;
+    padding: 25px 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+    margin-bottom: 30px;
+}
+
+.headerClass header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.headerClass header p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.headerClass header marquee {
+    font-size: 0.9rem;
+    color: #ffeb3b;
+}
+
+/* ===============================
+   Salary Section
+=============================== */
+.salaryClass {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.salaryClass label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.salaryClass input {
+    padding: 10px 15px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    width: 150px;
+    text-align: center;
+    font-size: 1rem;
+    transition: border 0.3s;
+}
+
+.salaryClass input:focus {
+    outline: none;
+    border-color: #4b6cb7;
+}
+
+.salaryClass button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    background: #4b6cb7;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.salaryClass button:hover {
+    background: #182848;
+    transform: translateY(-2px);
+}
+
+/* ===============================
+   Navigation Styling
+=============================== */
+#navID {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+#navID a {
+    text-decoration: none;
+    color: #4b6cb7;
+    font-weight: bold;
+    margin: 0 15px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+}
+
+#navID a:hover {
+    background: #4b6cb7;
+    color: #fff;
+}
+
+/* ===============================
+   Content Area
+=============================== */
+.contentClass p {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+/* ===============================
+   Expense Input Section
+=============================== */
+#expensesID div input[type="text"] {
+    padding: 10px 15px;
+    margin: 5px 5px 5px 0;
+    border-radius: 5px;
+    border: 2px solid #ddd;
+    width: 180px;
+    transition: border 0.3s;
+}
+
+#expensesID div input[type="text"]:focus {
+    border-color: #4b6cb7;
+    outline: none;
+}
+
+#expensesID div button {
+    padding: 10px 18px;
+    background: #ff5722;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+#expensesID div button:hover {
+    background: #e64a19;
+    transform: translateY(-2px);
+}
+
+/* ===============================
+   Tables Styling
+=============================== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    background: #fff;
+}
+
+thead {
+    background: linear-gradient(90deg, #4b6cb7, #182848);
+    color: #fff;
+}
+
+thead th {
+    padding: 12px;
+    text-align: left;
+}
+
+tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+tbody tr:hover {
+    background: #f1f1f1;
+}
+
+tfoot th {
+    padding: 12px;
+    background: #f1f1f1;
+    text-align: left;
+}
+
+/* ===============================
+   Buttons in Table (Edit/Delete)
+=============================== */
+button.editBtn, button.deleteBtn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+button.editBtn {
+    background: #4caf50;
+    color: #fff;
+    margin-right: 5px;
+}
+
+button.editBtn:hover {
+    background: #388e3c;
+    transform: translateY(-1px);
+}
+
+button.deleteBtn {
+    background: #f44336;
+    color: #fff;
+}
+
+button.deleteBtn:hover {
+    background: #d32f2f;
+    transform: translateY(-1px);
+}
+
+/* ===============================
+   Salary View Section
+=============================== */
+.salaryViewClass {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.salaryViewClass h2 {
+    margin-bottom: 15px;
+}
+
+.salaryViewClass p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4b6cb7;
+}
+
+/* ===============================
+   Responsive Design
+=============================== */
+@media (max-width: 768px) {
+    #navID {
+        flex-direction: column;
+    }
+
+    #navID a {
+        margin: 5px 0;
+    }
+
+    #expensesID div input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    #expensesID div button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+}
+
+
+
+
+
+body.dark-mode {
+    background-color: #0d0d0d;
+    color: #e5e5e5;
+}
+
+body.dark-mode header {
+    background-color: #1a1a1a;
+}
+
+body.dark-mode nav a {
+    background-color: #1a1a1a;
+    color: #e5e5e5;
+}
+
+body.dark-mode nav a:hover {
+    background-color: #ffcc00;
+    color: #0d0d0d;
+}
+
+body.dark-mode input, 
+body.dark-mode select, 
+body.dark-mode textarea {
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+}
+
+body.dark-mode table th {
+    background-color: #292929;
+    color: #ffcc00;
+}
+
+body.dark-mode table td {
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+}
+
+body.dark-mode button {
+    background-color: #ffcc00;
+    color: #121212;
+}
+/* Container for salary input */
+#salary {
+    background: #fff;
+    padding: 20px 30px;
+    margin: 20px auto;
+    max-width: 480px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-weight: 600;
+    color: #444;
+}
+
+/* Label */
+#salary label {
+    font-size: 18px;
+    color: #333;
+    flex: 1;
+}
+
+/* Salary input */
+#salaryInput {
+    flex: 1;
+    max-width: 160px;
+    padding: 10px 15px;
+    font-size: 20px;
+    font-weight: 600;
+    border: 2px solid #ffcc00;
+    border-radius: 10px;
+    text-align: center;
+    color: #2a9d8f;
+    background-color: #121212;
+    transition: border-color 0.3s ease;
+}
+
+/* Input focus effect */
+#salaryInput:focus {
+    outline: none;
+    border-color: #e9c46a;
+    box-shadow: 0 0 8px #e9c46a;
+}
+
+/* Save button */
+#saveSalaryBtn {
+    background-color: #ffcc00;
+    border: none;
+    padding: 12px 25px;
+    font-weight: 700;
+    font-size: 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    color: #121212;
+    box-shadow: 0 5px 12px rgb(255 204 0 / 0.6);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#saveSalaryBtn:hover {
+    background-color: #e6b800;
+    box-shadow: 0 8px 16px rgb(230 184 0 / 0.8);
+}
+
+/* Savings display container */
+.salaryViewClass {
+    background-color: #fff;
+    max-width: 480px;
+    margin: 30px auto;
+    padding: 25px 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+/* Savings heading */
+.salaryViewClass h2 {
+    font-weight: 800;
+    font-size: 26px;
+    color: #444;
+    margin-bottom: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Savings amount text */
+#salaryDisplay {
+    font-size: 36px;
+    font-weight: 900;
+    color: #2a9d8f;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 10px;
+    user-select: none;
+}
+
+/* Money bag icon styling */
+.salaryViewClass h2::before {
+    content: "💰 ";
+}
+
+/* Responsive tweaks */
+@media screen and (max-width: 540px) {
+    #salary {
+        flex-direction: column;
+        gap: 10px;
+    }
+    #salaryInput {
+        max-width: 100%;
+    }
+    .salaryViewClass {
+        margin: 20px 10px;
+        padding: 20px;
+    }
+}
+body.dark-theme #salary label {
+    color: #f0e68c;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
