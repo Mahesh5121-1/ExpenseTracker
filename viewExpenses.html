@@ -1,12 +1,11 @@
 <html>
 <head>
     <title>View Expenses</title>
+    <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-
     <h2>Your Expenses</h2>
-
-    <table border="1" width="60%" cellpadding="8">
+    <table class="expense-table">
         <thead>
             <tr>
                 <th>Expense Name</th>
@@ -14,7 +13,6 @@
             </tr>
         </thead>
         <tbody id="expenseTable"></tbody>
-
         <tfoot>
             <tr>
                 <th>Total</th>
@@ -23,32 +21,24 @@
         </tfoot>
     </table>
 
-</body>
+    <script src="jquery-3.7.1.js"></script>
+    <script>
+    $(document).ready(function(){
+        let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+        let total = 0;
 
-<script src="jquery-3.7.1.js"></script>
-<script>
-$(document).ready(function(){
-    let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
-    if(expenses.length === 0){
-        $("#expenseTable").append("<tr><td colspan='2'>No expenses added yet.</td></tr>");
-        $("#totalAmount").text("₹0");
-        return;
-    }
-    //let total = 0;
-    let total = JSON.parse(localStorage.getItem("totalAmount")) 
-    expenses.forEach(function(item){
-        $("#expenseTable").append(
-            "<tr><td>" + item.name + "</td><td>₹" + item.amount + "</td></tr>"
-            
-        );
-        total += Number(item.amount);
-        
+        if(expenses.length === 0){
+            $("#expenseTable").append("<tr><td colspan='2'>No expenses added yet.</td></tr>");
+        } else {
+            expenses.forEach(function(item){
+                $("#expenseTable").append(`<tr><td>${item.name}</td><td>₹${item.amount}</td></tr>`);
+                total += Number(item.amount);
+            });
+        }
+
+        localStorage.setItem("total", total);
+        $("#totalAmount").text("₹" + total);
     });
-    //localStorage.setItem(total);
-    localStorage.setItem("total", JSON.stringify(total));
-    $("#totalAmount").text("₹" + total);
-});
-</script>
-
+    </script>
+</body>
 </html>
-
