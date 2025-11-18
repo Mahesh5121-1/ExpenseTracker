@@ -1,11 +1,11 @@
 <html>
-    <head>
-        <title>Manage Expenses</title>
-    </head>
-    <body>
-        <h2>Your Expenses</h2>
-
-    <table border="1" width="60%" cellpadding="8">
+<head>
+    <title>Manage Expenses</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+    <h2>Your Expenses</h2>
+    <table class="expense-table">
         <thead>
             <tr>
                 <th>Expense Name</th>
@@ -14,64 +14,62 @@
             </tr>
         </thead>
         <tbody id="expenseTable"></tbody>
-
         <tfoot>
             <tr>
                 <th>Total</th>
                 <th id="totalAmount">₹0</th>
+                <th></th>
             </tr>
         </tfoot>
     </table>
-    </body>
-    <script src="jquery-3.7.1.js"></script>
-    <script>
-$(document).ready(function () {
 
+<script src="jquery-3.7.1.js"></script>
+<script>
+$(document).ready(function(){
     let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
-
-    if (expenses.length === 0) {
-        $("#expenseTable").append("<tr><td colspan='3'>No expenses added yet.</td></tr>");
-        return;
-    }
-
     let total = 0;
 
-    expenses.forEach(function (item, index) {
-        $("#expenseTable").append(
-            "<tr>" +
-                "<td>" + item.name + "</td>" +
-                "<td>₹" + item.amount + "</td>" +
-                "<td>" +
-                    "<button data-id='" + index + "' class='editBtn'>EDIT ✏️</button> " +
-                    "<button data-id='" + index + "' class='deleteBtn'>DELETE 🗑️</button>" +
-                "</td>" +
-            "</tr>"
-        );
-        total += Number(item.amount);
-    });
+    if(expenses.length === 0){
+        $("#expenseTable").append("<tr><td colspan='3'>No expenses added yet.</td></tr>");
+    } else {
+        expenses.forEach(function(item, index){
+            $("#expenseTable").append(
+                `<tr>
+                    <td>${item.name}</td>
+                    <td>₹${item.amount}</td>
+                    <td>
+                        <button class="editBtn" data-id="${index}">EDIT ✏️</button>
+                        <button class="deleteBtn" data-id="${index}">DELETE 🗑️</button>
+                    </td>
+                </tr>`
+            );
+            total += Number(item.amount);
+        });
+    }
 
     $("#totalAmount").text("₹" + total);
-    $(document).on("click", ".deleteBtn", function () {
+    localStorage.setItem("total", total);
+
+    $(document).on("click", ".deleteBtn", function(){
         let id = $(this).data("id");
         expenses.splice(id, 1);
         localStorage.setItem("expenses", JSON.stringify(expenses));
         location.reload();
     });
-    $(document).on("click", ".editBtn", function () {
+
+    $(document).on("click", ".editBtn", function(){
         let id = $(this).data("id");
         let newName = prompt("Enter new name:", expenses[id].name);
         let newAmount = prompt("Enter new amount:", expenses[id].amount);
 
-        if (newName && newAmount) {
+        if(newName && newAmount){
             expenses[id].name = newName;
-            expenses[id].amount = newAmount;
+            expenses[id].amount = Number(newAmount);
             localStorage.setItem("expenses", JSON.stringify(expenses));
             location.reload();
         }
     });
-
 });
 </script>
-
-
+</body>
 </html>
