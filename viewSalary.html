@@ -1,25 +1,25 @@
 <html>
-    <head>
-        <title>View Salary</title>
-        <link rel="stylesheet" type="text/css" href="CSS/stylesheet.css">
-        <link href="addExpense.html">
-        <link href="viewExpenses.html">
-    </head>
-    <body>
-        <div class="salaryViewClass">
-            <h2>Your Savings</h2>
-            <p id="salaryDisplay">Loading...</p>
-        </div>
-    </body>
-    <script src="jquery-3.7.1.js"></script>
-    <script>
-    $(document).ready(function(){
-       // $("#salaryDisplay").text("₹" + (localStorage.getItem("salary") || "Not Set"));
-       let salary1=localStorage.getItem("salary");
-       let salary2=localStorage.getItem("total");
-       let salary3=salary1-salary2;
-       $("#salaryDisplay").text("₹"+salary3);
-    });
-    </script>
+<head>
+    <title>View Savings</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+    <div class="salaryViewClass">
+        <h2>Your Savings</h2>
+        <p id="salaryDisplay">Loading...</p>
+    </div>
+</body>
 
+<script src="jquery-3.7.1.js"></script>
+<script>
+$(document).ready(function(){
+    let salary = Number(localStorage.getItem("salary")) || 0;
+    let totalExpenses = Number(localStorage.getItem("total")) || 0;
+
+    let remaining = salary - totalExpenses;
+    if(remaining < 0) remaining = 0;
+
+    $("#salaryDisplay").text("💰 ₹" + remaining.toFixed(2));
+});
+</script>
 </html>
